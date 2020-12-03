@@ -8,4 +8,4 @@ def countTrees(step, slope):
     return totalCount
 
 print(countTrees(1, 3))
-print(countTrees(1, 1)*countTrees(1, 3)*countTrees(1, 5)*countTrees(1, 7)*countTrees(2, 1))
+print(countTrees(1, 1) * countTrees(1, 3) * countTrees(1, 5) * countTrees(1, 7) * countTrees(2, 1))
