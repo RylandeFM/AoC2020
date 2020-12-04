@@ -6,7 +6,7 @@ def partOne():
         [condition, password] = fullEntry.split(": ")
         [conditionNumbers, conditionLetter] = condition.split(" ")
         [conditionLbound, conditionUbound] = conditionNumbers.split("-")
-        if password.count(conditionLetter) >= int(conditionLbound) and password.count(conditionLetter) <= int(conditionUbound): validCount += 1
+        if int(conditionLbound) <= password.count(conditionLetter) <= int(conditionUbound): validCount += 1
     print(validCount)
 
 def partTwo():
