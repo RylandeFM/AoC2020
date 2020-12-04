@@ -12,8 +12,7 @@ def readPassports():
                 validKeysCount += 1
             passport = {}
         else:
-            inputs = line.split(" ")
-            for kvPair in inputs:
+            for kvPair in line.split(" "):
                 [key, value] = kvPair.split(":")
                 passport[key] = value
     if len(requiredFields.intersection(passport.keys())) == len(requiredFields):
