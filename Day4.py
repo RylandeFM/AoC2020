@@ -1,5 +1,4 @@
 import re
-import collections
 
 inputString = open("Day4Input.txt", "r").read().splitlines()
 requiredFields = {"byr","iyr","eyr","hgt","hcl","ecl","pid"}
