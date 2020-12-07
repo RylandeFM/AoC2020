@@ -39,6 +39,5 @@ def readAnswersSet():
     print(totalP1Count)
     print(totalP2Count)
 
-
 readAnswers()
 readAnswersSet()
