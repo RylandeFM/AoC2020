@@ -15,8 +15,7 @@ def findBags(searchString):
 def countContains(searchString, multiplier):
     global containCount
     if bags[searchString] != "no other bags.":
-        subBags = bags[searchString].split(", ")
-        for subBag in subBags:
+        for subBag in bags[searchString].split(", "):
             containCount += multiplier * int(subBag.split(" ")[0])
             countContains(subBag.split(" bag")[0][2:].strip() + " bags", multiplier * int(subBag.split(" ")[0]))
 
