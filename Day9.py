@@ -1,9 +1,7 @@
 inputString = [int(i) for i in open("Day9Input.txt", "r").read().splitlines()]
 
 def partOne(size):
-    currentNumbers, matchFound = [], False
-    for i in range(size):
-        currentNumbers.append(inputString[i])
+    currentNumbers, matchFound = inputString[:size], False
     for entry in inputString[size:]:
         matchFound = False
         for poss in currentNumbers:
