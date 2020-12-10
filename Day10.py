@@ -18,7 +18,7 @@ def getDelta():
     return delta
 
 def findCombinations(delta):
-    possibilities = [countPoss(sum(1 for _ in group)) for i, group in groupby(delta) if i == 1]
+    possibilities = [countPoss(len(list(g))) for i, g in groupby(delta) if i == 1]
     print(reduce(lambda x, y: x*y, possibilities))
 
 findCombinations(getDelta())
