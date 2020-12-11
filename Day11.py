@@ -37,7 +37,6 @@ def updateState(data, threshold, countVisible):
                     stable = False
     return newData, stable
 
-
 def progressLife(countVisible):
     data = addBorderToData(inputString)
     stable = False
