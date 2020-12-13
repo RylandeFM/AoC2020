@@ -23,13 +23,11 @@ def partTwo():
     for line in inputString:
         if line[:1] == "L":
             for i in range(0, int(int(line[1:]) / 90)):
-                newX = -wayY
-                newY = wayX
+                newX, newY = -wayY, wayX
                 wayX, wayY = newX, newY
         elif line[:1] == "R":
             for i in range(0, int(int(line[1:]) / 90)):
-                newX = wayY
-                newY = -wayX
+                newX, newY = wayY, -wayX
                 wayX, wayY = newX, newY
         elif line[:1] == "F":
             x += wayX * int(line[1:])
