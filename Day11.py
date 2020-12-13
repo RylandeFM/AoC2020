@@ -28,12 +28,10 @@ def updateState(data, threshold, countVisible):
         for y in range(1, len(data)):
             if data[y][x] == 'L':
                 if countSeats(x, y, data, countVisible) == 0:
-                    newData[y][x] = '#'
-                    stable = False
+                    newData[y][x], stable = '#', False
             elif data[y][x] == '#':
                 if countSeats(x, y, data, countVisible) >= threshold:
-                    newData[y][x] = 'L'
-                    stable = False
+                    newData[y][x], stable = 'L', False
     return newData, stable
 
 def progressLife(countVisible):
