@@ -7,10 +7,10 @@ def partOne():
 def partTwo():
     idList = [(i, int(x)) for i, x in enumerate(inputString[1].split(",")) if x != 'x']
     interval, currTime = idList[0][1], 0
-    for delta, x in idList[1:]:
-        while (currTime + delta) % x != 0:
+    for delta, period in idList[1:]:
+        while (currTime + delta) % period != 0:
             currTime += interval
-        interval *= x
+        interval *= period
     print(currTime)
 
 partOne()
