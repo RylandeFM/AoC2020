@@ -23,8 +23,7 @@ def countSeats(x, y, data, countVisible):
     return count
 
 def updateState(data, threshold, countVisible):
-    stable = True
-    newData = deepcopy(data)
+    newData, stable = deepcopy(data), True
     for x in range(1, len(data[0])):
         for y in range(1, len(data)):
             if data[y][x] == 'L':
@@ -38,8 +37,7 @@ def updateState(data, threshold, countVisible):
     return newData, stable
 
 def progressLife(countVisible):
-    data = addBorderToData(inputString)
-    stable = False
+    data, stable = addBorderToData(inputString), False
     while not stable:
         if countVisible:
             data, stable = updateState(data, 5, countVisible)
