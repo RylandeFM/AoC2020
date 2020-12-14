@@ -1,5 +1,3 @@
-from copy import deepcopy
-
 inputString = open("Day11Input.txt", "r").read().splitlines()
 
 def addBorderToData(data):
@@ -23,7 +21,7 @@ def countSeats(x, y, data, countVisible):
     return count
 
 def updateState(data, threshold, countVisible):
-    newData, stable = deepcopy(data), True
+    newData, stable = data[:], True
     for x in range(1, len(data[0])):
         for y in range(1, len(data)):
             if data[y][x] == 'L':

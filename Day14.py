@@ -1,5 +1,4 @@
-import re
-from copy import deepcopy
+import itertools as it
 
 inputString = open("Day14Input.txt", "r").read().splitlines()
 
@@ -10,15 +9,14 @@ def applyMask(mask, number, notRelevant):
         paddedBin[swapPos[0]] = swapPos[1]
     return "".join(paddedBin[::-1])
 
-def getUpdatePositions(mask, number):
-    addressList, updatedNumber = [], list(applyMask(mask, number, '0'))
-    positions = [i for i, x in enumerate(updatedNumber) if x == 'X']
-    for i in range(2 ** updatedNumber.count("X")):
-        binRepresentation = list(bin(i)[2:].zfill(updatedNumber.count("X")))
-        newNumber = deepcopy(updatedNumber)
-        for j in range(len(binRepresentation)):
-            newNumber[positions[j]] = binRepresentation[j]
-        addressList.append(int("".join(newNumber), 2))
+def getUpdatePositions(mask, memLoc):
+    addressList, maskedLoc = [], list(applyMask(mask, memLoc, '0'))
+    positions = [i for i, x in enumerate(maskedLoc) if x == 'X']
+    for binNumber in it.product(['0', '1'], repeat=maskedLoc.count("X")):
+        newNumber = maskedLoc[:]
+        for j in range(maskedLoc.count("X")):
+            newNumber[positions[j]] = binNumber[j]
+        addressList.append("".join(newNumber))
     return addressList
 
 def processInstructions(maskAddress):
@@ -29,11 +27,11 @@ def processInstructions(maskAddress):
             mask = value
         else:
             if maskAddress:
-                updatePositions = getUpdatePositions(mask, int(re.search(r"\[(.*)]", instr).group(1)))
+                updatePositions = getUpdatePositions(mask, int(instr[4:-1]))
                 for pos in updatePositions:
                     memory[pos] = int(value)
             else:
-                memory[int(re.search(r"\[(.*)]", instr).group(1))] = int(applyMask(mask, int(value), 'X'), 2)
+                memory[instr[4:-1]] = int(applyMask(mask, int(value), 'X'), 2)
     print(sum(memory.values()))
 
 processInstructions(False)
