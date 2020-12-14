@@ -13,10 +13,10 @@ def getUpdatePositions(mask, memLoc):
     addressList, maskedLoc = [], list(applyMask(mask, memLoc, '0'))
     positions = [i for i, x in enumerate(maskedLoc) if x == 'X']
     for binNumber in it.product(['0', '1'], repeat=maskedLoc.count("X")):
-        newNumber = maskedLoc[:]
+        newLoc = maskedLoc[:]
         for j in range(maskedLoc.count("X")):
-            newNumber[positions[j]] = binNumber[j]
-        addressList.append("".join(newNumber))
+            newLoc[positions[j]] = binNumber[j]
+        addressList.append("".join(newLoc))
     return addressList
 
 def processInstructions(maskAddress):
