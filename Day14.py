@@ -3,11 +3,11 @@ import itertools as it
 inputString = open("Day14Input.txt", "r").read().splitlines()
 
 def applyMask(mask, number, notRelevant):
-    relevantMask = [(i, x) for i, x in enumerate(mask[::-1]) if x != notRelevant]
-    paddedBin = list(bin(number)[2:].zfill(len(mask))[::-1])
+    relevantMask = [(i, x) for i, x in enumerate(mask) if x != notRelevant]
+    paddedBin = list(bin(number)[2:].zfill(len(mask)))
     for swapPos in relevantMask:
         paddedBin[swapPos[0]] = swapPos[1]
-    return "".join(paddedBin[::-1])
+    return "".join(paddedBin)
 
 def getUpdatePositions(mask, memLoc):
     addressList, maskedLoc = [], list(applyMask(mask, memLoc, '0'))
