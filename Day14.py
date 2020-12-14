@@ -3,8 +3,8 @@ from copy import deepcopy
 
 inputString = open("Day14Input.txt", "r").read().splitlines()
 
-def applyMask(mask, number, character):
-    relevantMask = [(i, x) for i, x in enumerate(mask[::-1]) if x != character]
+def applyMask(mask, number, notRelevant):
+    relevantMask = [(i, x) for i, x in enumerate(mask[::-1]) if x != notRelevant]
     paddedBin = list(bin(number)[2:].zfill(len(mask))[::-1])
     for swapPos in relevantMask:
         paddedBin[swapPos[0]] = swapPos[1]
