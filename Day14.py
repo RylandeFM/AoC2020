@@ -6,8 +6,8 @@ inputString = open("Day14Input.txt", "r").read().splitlines()
 def applyMask(mask, number, character):
     relevantMask = [(i, x) for i, x in enumerate(mask[::-1]) if x != character]
     paddedBin = list(bin(number)[2:].zfill(len(mask))[::-1])
-    for swap in relevantMask:
-        paddedBin[swap[0]] = swap[1]
+    for swapPos in relevantMask:
+        paddedBin[swapPos[0]] = swapPos[1]
     return "".join(paddedBin[::-1])
 
 def getUpdatePositions(mask, number):
@@ -22,7 +22,7 @@ def getUpdatePositions(mask, number):
     return addressList
 
 def processInstructions(maskAddress):
-    memory, mask, updatePositions = {}, "", []
+    memory, mask = {}, ""
     for line in inputString:
         instr, value = line.split(" = ")
         if instr == "mask":
