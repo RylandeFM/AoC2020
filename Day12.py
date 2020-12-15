@@ -19,7 +19,7 @@ def partOne():
     print(abs(x)+abs(y))
 
 def partTwo():
-    x, y, wayX, wayY, currDirIdx = 0, 0, 10, 1, 1
+    x, y, wayX, wayY = 0, 0, 10, 1
     for line in inputString:
         if line[:1] == "L":
             for i in range(0, int(int(line[1:]) / 90)):
