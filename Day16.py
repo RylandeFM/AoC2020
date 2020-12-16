@@ -7,7 +7,6 @@ def getCorrectTickets():
     for line in inputString[:20]:
         for numberRange in line.split(": ")[1].split(" or "):
             possibleNumbers.update(range(int(numberRange.split("-")[0]), int(numberRange.split("-")[1])+1))
-
     for ticket in inputString[25:]:
         impossibles = [int(x) for x in ticket.split(",") if int(x) not in possibleNumbers]
         if len(impossibles) > 0:
@@ -27,7 +26,7 @@ def getPossibleRanges():
     return possibleNumbers
 
 def getValidRanges(myTicket, validTickets, possibleRanges):
-    valid = []
+    validRanges = []
     for j in range(0, 20):
         positionSet = {int(x.split(",")[j]) for x in validTickets}
         positionSet.add(int(myTicket.split(",")[j]))
@@ -35,16 +34,16 @@ def getValidRanges(myTicket, validTickets, possibleRanges):
         for i in range(0, 20):
             if len(positionSet.difference(possibleRanges[i])) == 0:
                 validSet.add(i)
-        valid.append(validSet)
-    return valid
+        validRanges.append(validSet)
+    return validRanges
 
 def removeFromValidRange(validRanges, validPos):
-    returnSet = []
+    updatedList = []
     for possSet in validRanges:
         if validPos in possSet:
             possSet.remove(validPos)
-        returnSet.append(possSet)
-    return returnSet
+        updatedList.append(possSet)
+    return updatedList
 
 def identifyValidPositions(validTickets):
     myTicket = inputString[22]
