@@ -4,12 +4,12 @@ inputString = open("Day17Input.txt", "r").read().splitlines()
 
 def parseInput(hyper):
     data = {}
-    for i, line in enumerate(inputString):
-        for j, character in enumerate(line):
+    for y, line in enumerate(inputString):
+        for x, character in enumerate(line):
             if hyper:
-                if character == '#': data[(j, i, 0, 0)] = "#"
+                if character == '#': data[(x, y, 0, 0)] = "#"
             else:
-                if character == '#': data[(j, i, 0)] = "#"
+                if character == '#': data[(x, y, 0)] = "#"
     return data
 
 def getListOfPotentialActives(activeCubes, hyper):
