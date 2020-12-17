@@ -29,14 +29,18 @@ def countNeighbours(activeCubes, coordinates, translations):
         if count > 3: return count
     return count
 
-def bootProcess(hyper):
-    activeCubes = parseInput(hyper)
+def getTranslations(hyper):
     if hyper:
         neighbourTranslations = list(itertools.product(range(-1, 2), range(-1, 2), range(-1, 2), range(-1, 2)))
         neighbourTranslations.remove((0, 0, 0, 0))
     else:
         neighbourTranslations = list(itertools.product(range(-1, 2), range(-1, 2), range(-1, 2)))
         neighbourTranslations.remove((0, 0, 0))
+    return neighbourTranslations
+
+def bootProcess(hyper):
+    activeCubes = parseInput(hyper)
+    neighbourTranslations = getTranslations(hyper)
     for _ in range(0, 6):
         potentialCubes = getListOfPotentialActives(activeCubes, hyper)
         newActive = {}
