@@ -2,25 +2,19 @@ import itertools
 
 inputString = open("Day17Input.txt", "r").read().splitlines()
 
-def parseInput(hyper):
+def parseInput(dimensions):
     data = {}
     for y, line in enumerate(inputString):
         for x, character in enumerate(line):
-            if hyper:
-                if character == '#': data[(x, y, 0, 0)] = "#"
-            else:
-                if character == '#': data[(x, y, 0)] = "#"
+            if character == '#': data[(x, y)+(0,)*(dimensions-2)] = "#"
     return data
 
-def getListOfPotentialActives(activeCubes, hyper):
-    minX, maxX = min(activeCubes, key=lambda t: t[0])[0], max(activeCubes, key=lambda t: t[0])[0]
-    minY, maxY = min(activeCubes, key=lambda t: t[1])[1], max(activeCubes, key=lambda t: t[1])[1]
-    minZ, maxZ = min(activeCubes, key=lambda t: t[2])[2], max(activeCubes, key=lambda t: t[2])[2]
-    if hyper:
-        minW, maxW = min(activeCubes, key=lambda t: t[3])[3], max(activeCubes, key=lambda t: t[3])[3]
-        return list(itertools.product(range(minX - 1, maxX + 2), range(minY - 1, maxY + 2), range(minZ - 1, maxZ + 2), range(minW - 1, maxW + 2)))
-    else:
-        return list(itertools.product(range(minX - 1, maxX + 2), range(minY - 1, maxY + 2), range(minZ - 1, maxZ + 2)))
+def getListOfPotentialActives(activeCubes, dimensions):
+    ranges = []
+    for i in range(0, dimensions):
+        low, high = min(activeCubes, key=lambda t: t[i])[i], max(activeCubes, key=lambda t: t[i])[i]
+        ranges.append(list(range(low - 1, high + 2)))
+    return list(itertools.product(*ranges))
 
 def countNeighbours(activeCubes, coordinates, translations):
     count = 0
@@ -29,20 +23,16 @@ def countNeighbours(activeCubes, coordinates, translations):
         if count > 3: return count
     return count
 
-def getTranslations(hyper):
-    if hyper:
-        neighbourTranslations = list(itertools.product(range(-1, 2), range(-1, 2), range(-1, 2), range(-1, 2)))
-        neighbourTranslations.remove((0, 0, 0, 0))
-    else:
-        neighbourTranslations = list(itertools.product(range(-1, 2), range(-1, 2), range(-1, 2)))
-        neighbourTranslations.remove((0, 0, 0))
+def getTranslations(dimensions):
+    neighbourTranslations = list(itertools.product(range(-1, 2), repeat=dimensions))
+    neighbourTranslations.remove((0,)*dimensions)
     return neighbourTranslations
 
-def bootProcess(hyper):
-    activeCubes = parseInput(hyper)
-    neighbourTranslations = getTranslations(hyper)
+def bootProcess(dimensions):
+    activeCubes = parseInput(dimensions)
+    neighbourTranslations = getTranslations(dimensions)
     for _ in range(0, 6):
-        potentialCubes = getListOfPotentialActives(activeCubes, hyper)
+        potentialCubes = getListOfPotentialActives(activeCubes, dimensions)
         newActive = {}
         for cube in potentialCubes:
             if cube in activeCubes:
@@ -52,5 +42,5 @@ def bootProcess(hyper):
         activeCubes = newActive
     print(len(activeCubes))
 
-bootProcess(False)
-bootProcess(True)
+bootProcess(3)
+bootProcess(4)
