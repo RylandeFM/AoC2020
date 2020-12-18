@@ -9,12 +9,11 @@ def parseInput(dimensions):
             if character == '#': data[(x, y)+(0,)*(dimensions-2)] = "#"
     return data
 
-def getListOfPotentialActives(activeCubes, dimensions):
-    ranges = []
-    for i in range(0, dimensions):
-        low, high = min(activeCubes, key=lambda t: t[i])[i], max(activeCubes, key=lambda t: t[i])[i]
-        ranges.append(list(range(low - 1, high + 2)))
-    return list(itertools.product(*ranges))
+def getListOfPotentialActives(activeCubes, translations):
+    neighbours = set()
+    for coordinates in activeCubes:
+        neighbours.update({tuple(left + right for left, right in zip(coordinates, translation)) for translation in translations})
+    return neighbours
 
 def countNeighbours(activeCubes, coordinates, translations):
     count = 0
@@ -32,7 +31,7 @@ def bootProcess(dimensions):
     activeCubes = parseInput(dimensions)
     neighbourTranslations = getTranslations(dimensions)
     for _ in range(0, 6):
-        potentialCubes = getListOfPotentialActives(activeCubes, dimensions)
+        potentialCubes = getListOfPotentialActives(activeCubes, neighbourTranslations)
         newActive = {}
         for cube in potentialCubes:
             if cube in activeCubes:
