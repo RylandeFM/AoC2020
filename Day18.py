@@ -9,14 +9,11 @@ def solveReducedEquation(equation, priority):
         else:
             return eval(equation)
     else:
-        currentOperation = ''
-        total = int(equation.split(" ")[0])
-        for c in equation.split(" ")[1:]:
-            if c.isnumeric():
-                total = eval(str(total) + currentOperation + c)
-            else:
-                currentOperation = c
-        return total
+        equation = equation.split(" ")
+        if len(equation) == 3:
+            return eval(" ".join(equation))
+        else:
+            return eval(str(solveReducedEquation(" ".join(equation[:-2]), priority)) + " ".join(equation[-2:]))
 
 def solveEquation(line, priority):
     while "(" in line:
@@ -29,10 +26,7 @@ def solveEquation(line, priority):
     return solveReducedEquation(line, priority)
 
 def solveLines(priority):
-    total = 0
-    for line in inputString:
-        total += solveEquation(line, priority)
-    print(total)
+    print(sum(map(lambda line: solveEquation(line, priority), inputString)))
 
 solveLines(False)
 solveLines(True)
