@@ -73,14 +73,12 @@ def buildImage(pictures, numberCommonEdges, startCorner):
     centerPieces = [x for x, y in numberCommonEdges.items() if y == 4]
     pictureMap[0][0] = cornerPieces[startCorner]
     orientedPictures = {}
-
     # get top left corner
     allEdges = getAllOtherEdges(pictures, cornerPieces[startCorner])
     for picture in getPossibleOrientations(pictures[cornerPieces[startCorner]]):
         if [edge in allEdges or edge[::-1] in allEdges for edge in getPotentialEdges(picture)] == [False, True, True, False]:
             orientedPictures[cornerPieces[startCorner]] = picture
             break
-
     # fill top row
     nextPicture = orientedPictures[cornerPieces[startCorner]]
     cornerPieces.remove(cornerPieces[startCorner])
@@ -93,7 +91,6 @@ def buildImage(pictures, numberCommonEdges, startCorner):
     pictureMap[0][dimension - 1] = pieceID
     orientedPictures[pieceID] = nextPicture
     cornerPieces.remove(pieceID)
-
     # fill middle rows
     for r in range(1, dimension - 1):
         nextPicture = orientedPictures[pictureMap[r - 1][0]]
@@ -110,7 +107,6 @@ def buildImage(pictures, numberCommonEdges, startCorner):
         pictureMap[r][dimension - 1] = pieceID
         orientedPictures[pieceID] = nextPicture
         edgePieces.remove(pieceID)
-
     # fill bottom row
     r = dimension - 1
     nextPicture = orientedPictures[pictureMap[r - 1][0]]
@@ -127,7 +123,6 @@ def buildImage(pictures, numberCommonEdges, startCorner):
     pictureMap[r][dimension - 1] = pieceID
     orientedPictures[pieceID] = nextPicture
     cornerPieces.remove(pieceID)
-
     return pictureMap, orientedPictures
 
 def removeBorder(picture):
@@ -146,10 +141,7 @@ def removeGaps(orientedPictures, pictureMap):
             image.append(line)
     return image
 
-def findCorrectRotation(finalImage):
-    body = re.compile("#[#.]{4}##[#.]{4}##[#.]{4}###")
-    head = re.compile("[#.]{18}#[#.]")
-    tail = re.compile("[#.]#[#.]{2}#[#.]{2}#[#.]{2}#[#.]{2}#[#.]{2}#[#.]{3}")
+def findCorrectRotation(finalImage, body, head, tail):
     for image in getPossibleOrientations(finalImage):
         for idx, line in enumerate(image):
             bodySearch = body.search(line)
@@ -158,10 +150,7 @@ def findCorrectRotation(finalImage):
                 if tail.search(image[idx + 1][start:end + 1]) and head.search(image[idx - 1][start:end + 1]):
                     return image
 
-def lineHasSnake(idx, line, finalImage):
-    body = re.compile("#[#.]{4}##[#.]{4}##[#.]{4}###")
-    head = re.compile("[#.]{18}#[#.]")
-    tail = re.compile("[#.]#[#.]{2}#[#.]{2}#[#.]{2}#[#.]{2}#[#.]{2}#[#.]{3}")
+def lineHasSnake(idx, line, finalImage, body, head, tail):
     if body.search(line):
         bodySearch = body.search(line)
         if bodySearch:
@@ -174,26 +163,24 @@ def getWaterRoughness():
     pictureMap, orientedPictures = buildImage(pictures, numberCommonEdges, 0)
     for picId, picture in orientedPictures.items():
         orientedPictures[picId] = removeBorder(picture)
-    finalImage = findCorrectRotation(removeGaps(orientedPictures, pictureMap))
-    headIdxs = [18]
-    bodyIdxs = [0, 5, 6, 11, 12, 17, 18, 19]
-    tailIdxs = [1, 4, 7, 10, 13, 16]
     body = re.compile("#[#.]{4}##[#.]{4}##[#.]{4}###")
+    head = re.compile("[#.]{18}#[#.]")
+    tail = re.compile("[#.]#[#.]{2}#[#.]{2}#[#.]{2}#[#.]{2}#[#.]{2}#[#.]{3}")
+    finalImage = findCorrectRotation(removeGaps(orientedPictures, pictureMap), body, head, tail)
+    headIdxs, bodyIdxs, tailIdxs = [18], [0, 5, 6, 11, 12, 17, 18, 19], [1, 4, 7, 10, 13, 16]
     for idx, line in enumerate(finalImage):
-        while lineHasSnake(idx, line, finalImage):
+        while lineHasSnake(idx, line, finalImage, body, head, tail):
             bodySearch = body.search(line)
             start, end = bodySearch.start(), bodySearch.end()
             # replace head
             repLine = list(finalImage[idx - 1])
             repLine[headIdxs[0] + start] = "O"
             finalImage[idx - 1] = "".join(repLine)
-
             # replace body
             repLine = list(finalImage[idx])
             for bodyIdx in bodyIdxs:
                 repLine[bodyIdx + start] = "O"
             finalImage[idx] = "".join(repLine)
-
             # replace tail
             repLine = list(finalImage[idx + 1])
             for tailIdx in tailIdxs:
