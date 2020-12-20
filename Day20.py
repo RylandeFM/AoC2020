@@ -18,7 +18,10 @@ def parseAllPictures():
     return pictures
 
 def getAllOtherEdges(pictures, picID):
-    return getAllEdges({x: y for x, y in pictures.items() if x != picID})
+    edges = set()
+    for picture in {x: y for x, y in pictures.items() if x != picID}.values():
+        edges.update(getPotentialEdges(picture))
+    return edges
 
 def getPotentialEdges(picture):
     edges = [(picture[0], picture[0][::-1])]
@@ -27,12 +30,6 @@ def getPotentialEdges(picture):
     edges.append((picture[-1], picture[-1][::-1]))
     left = "".join([line[0] for line in picture])
     edges.append((left, left[::-1]))
-    return edges
-
-def getAllEdges(pictures):
-    edges = set()
-    for picture in pictures.values():
-        edges.update(getPotentialEdges(picture))
     return edges
 
 def countCommonEdges():
