@@ -186,6 +186,7 @@ def getWaterRoughness():
             for tailIdx in tailIdxs:
                 repLine[tailIdx + start] = "O"
             finalImage[idx + 1] = "".join(repLine)
+            # update line, there might be more than one snake
             line = finalImage[idx]
     print(sum([line.count("#") for line in finalImage]))
 
