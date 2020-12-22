@@ -18,11 +18,12 @@ def playCombat():
     return scoreDeck(deck1) if len(deck1) > 0 else scoreDeck(deck2)
 
 def playRecursiveCombat(deck1, deck2):
-    previousScores = []
+    previousScores = set()
     while len(deck1) > 0 and len(deck2) > 0:
-        if deck1 in previousScores:
+        if tuple(deck1) in previousScores or tuple(deck2) in previousScores:
             return 1, 0
-        previousScores.append(deck1[:])
+        previousScores.add(tuple(deck1))
+        previousScores.add(tuple(deck2))
         card1, card2 = deck1.pop(0), deck2.pop(0)
         if len(deck1) < card1 or len(deck2) < card2:
             if card1 > card2:
