@@ -30,9 +30,7 @@ def partOne(nextCup):
     print(answer)
 
 def partTwo(nextCup):
-    firstCup = nextCup[0]
-    secondCup = nextCup[firstCup]
-    print((firstCup + 1) * (secondCup + 1))
+    print((nextCup[0] + 1) * (nextCup[nextCup[0]] + 1))
 
 cups = tuple(int(c) - 1 for c in inputString)  # -1 so we can just use the index
 partOne(playRounds(cups, 100))
