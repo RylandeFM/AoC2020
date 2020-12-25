@@ -5,7 +5,7 @@ def getEncryptionKey(publicKey, otherPublicKey):
     while value != publicKey:
         value = (value * subject) % modulo
         loops += 1
-    return pow(otherPublicKey, loops, 20201227)
+    return pow(otherPublicKey, loops, modulo)
 
 print(getEncryptionKey(cardKey, doorKey))
 print(getEncryptionKey(doorKey, cardKey))
