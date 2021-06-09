@@ -114,13 +114,13 @@ namespace CSharp
             {
                 return false;
             }
-            else if (passport["hgt"].Substring(passport["hgt"].Length-2,2) == "in")
+            else if (passport["hgt"].Substring(passport["hgt"].Length - 2, 2) == "in")
             {
-                if (int.Parse(passport["hgt"].Substring(0, passport["hgt"].Length-2)) is < 59 or > 76) { return false; }
+                if (int.Parse(passport["hgt"][0..^2]) is < 59 or > 76) { return false; }
             }
             else if (passport["hgt"].Substring(passport["hgt"].Length - 3, 3) == "cm")
             {
-                if (int.Parse(passport["hgt"].Substring(0, passport["hgt"].Length - 3)) is < 150 or > 193) { return false; }
+                if (int.Parse(passport["hgt"][0..^3]) is < 150 or > 193) { return false; }
             }
 
             if (!hexColor.IsMatch(passport["hcl"])) { return false; }
