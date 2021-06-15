@@ -29,10 +29,11 @@ namespace CSharp
         static void RunPart2(string[] inputData)
         {
             HashSet<long> swappedPositions = new();
-            HandHeldConsole console = new() ;
+            HandHeldConsole console = new();
             bool foundSwap = false;
 
-            while (!foundSwap) {
+            while (!foundSwap)
+            {
                 console = new();
                 HashSet<long> visitedIndexes = new();
                 bool hasSwapped = false;
@@ -43,7 +44,7 @@ namespace CSharp
                     if (inputData[console.getProcessIndex()].Split(" ")[0] != "acc" && !hasSwapped && !swappedPositions.Contains(console.getProcessIndex()))
                     {
                         string instruction = inputData[console.getProcessIndex()];
-                        instruction = instruction.Split(" ")[0] == "nop" ? instruction.Replace("nop", "jmp"): instruction.Replace("jmp", "nop");
+                        instruction = instruction.Split(" ")[0] == "nop" ? instruction.Replace("nop", "jmp") : instruction.Replace("jmp", "nop");
                         hasSwapped = true;
                         swappedPositions.Add(console.getProcessIndex());
                         console.runCommand(instruction);
