@@ -2,7 +2,7 @@ from functools import reduce
 from math import sqrt
 import re
 
-inputString = open("Day20Input.txt", "r").read().splitlines()
+inputString = open("Python/Day20Input.txt", "r").read().splitlines()
 
 def parseAllPictures():
     currentID, picture, pictures = "", [], {}

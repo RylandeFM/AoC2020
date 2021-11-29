@@ -1,4 +1,4 @@
-inputString = open("Day8Input.txt", "r").read().splitlines()
+inputString = open("Python/Day8Input.txt", "r").read().splitlines()
 accumulator, swappedPos = 0, set()
 
 def runProgram(skip):

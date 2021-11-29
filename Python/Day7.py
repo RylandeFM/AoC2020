@@ -1,4 +1,4 @@
-inputString = open("Day7Input.txt", "r").read().splitlines()
+inputString = open("Python/Day7Input.txt", "r").read().splitlines()
 bags, foundBags, containCount = {}, set(), 0
 
 def readInput():

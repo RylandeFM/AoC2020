@@ -1,4 +1,4 @@
-inputString = [int(x) for x in open("Day1Input.txt", "r").read().splitlines()]
+inputString = [int(x) for x in open("Python/Day1Input.txt", "r").read().splitlines()]
 inputString.sort()
 
 def partOne(total):

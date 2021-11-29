@@ -1,4 +1,4 @@
-inputString = open("Day24Input.txt", "r").read().splitlines()
+inputString = open("Python/Day24Input.txt", "r").read().splitlines()
 transformations = {"e": (1, 0), "w": (-1, 0), "nw": (-1, 1), "ne": (0, 1), "sw": (0, -1), "se": (1, -1), "i": (0, 0)}
 
 def parseLine(line):

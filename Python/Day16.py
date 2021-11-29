@@ -1,6 +1,6 @@
 from functools import reduce
 
-inputString = open("Day16Input.txt", "r").read().splitlines()
+inputString = open("Python/Day16Input.txt", "r").read().splitlines()
 
 def getCorrectTickets():
     possibleNumbers, incorrect, correctTickets = set(), [], []

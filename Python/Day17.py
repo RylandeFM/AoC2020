@@ -1,6 +1,6 @@
 import itertools
 
-inputString = open("Day17Input.txt", "r").read().splitlines()
+inputString = open("Python/Day17Input.txt", "r").read().splitlines()
 
 def parseInput(dimensions):
     data = {}

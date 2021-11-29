@@ -1,4 +1,4 @@
-inputString = [int(i) for i in open("Day9Input.txt", "r").read().splitlines()]
+inputString = [int(i) for i in open("Python/Day9Input.txt", "r").read().splitlines()]
 
 def partOne(size):
     currentNumbers, matchFound = inputString[:size], False

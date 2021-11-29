@@ -1,6 +1,6 @@
 from functools import reduce
 
-inputString = open("Day18Input.txt", "r").read().splitlines()
+inputString = open("Python/Day18Input.txt", "r").read().splitlines()
 
 def solveReducedEquation(equation, priority):
     if priority:

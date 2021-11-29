@@ -1,4 +1,4 @@
-inputString = open("Day15Input.txt", "r").read().splitlines()
+inputString = open("Python/Day15Input.txt", "r").read().splitlines()
 inputString = [int(i) for i in inputString[0].split(",")]
 
 def playMemory(target):

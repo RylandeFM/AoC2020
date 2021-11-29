@@ -1,4 +1,4 @@
-inputString = open("Day12Input.txt", "r").read().splitlines()
+inputString = open("Python/Day12Input.txt", "r").read().splitlines()
 
 directions = ["N", "E", "S", "W"]
 translations = {"N": [0, 1], "E": [1, 0], "S": [0, -1], "W": [-1, 0]}

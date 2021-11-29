@@ -1,4 +1,4 @@
-inputString = open("Day6Input.txt", "r").read().splitlines()
+inputString = open("Python/Day6Input.txt", "r").read().splitlines()
 
 def readAnswers():
     totalCount, totalP2Count, lineCount, answers = 0, 0, 0, {}

@@ -1,6 +1,6 @@
 import itertools as it
 
-inputString = open("Day14Input.txt", "r").read().splitlines()
+inputString = open("Python/Day14Input.txt", "r").read().splitlines()
 
 def applyMask(mask, number, notRelevant):
     relevantMask = [(i, x) for i, x in enumerate(mask) if x != notRelevant]

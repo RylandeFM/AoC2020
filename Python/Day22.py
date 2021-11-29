@@ -1,4 +1,4 @@
-inputString = open("Day22Input.txt", "r").read()
+inputString = open("Python/Day22Input.txt", "r").read()
 
 player1, player2 = inputString.split("\n\n")
 player1 = [int(i) for i in player1.split(":")[1].strip().split("\n")]

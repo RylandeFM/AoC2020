@@ -1,4 +1,4 @@
-inputString = open("Day13Input.txt", "r").read().splitlines()
+inputString = open("Python/Day13Input.txt", "r").read().splitlines()
 
 def partOne():
     timeTable = {int(x) - (int(inputString[0]) % int(x)): int(x) for x in inputString[1].split(",") if x != "x"}

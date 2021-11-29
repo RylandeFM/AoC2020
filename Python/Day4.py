@@ -1,6 +1,6 @@
 import re
 
-inputString = open("Day4Input.txt", "r").read().splitlines()
+inputString = open("Python/Day4Input.txt", "r").read().splitlines()
 requiredFields = {"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
 
 def readPassports():

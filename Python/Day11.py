@@ -1,4 +1,4 @@
-inputString = open("Day11Input.txt", "r").read().splitlines()
+inputString = open("Python/Day11Input.txt", "r").read().splitlines()
 
 def addBorderToData(data):
     newList = [['.'] * (len(data[0]) + 2)]

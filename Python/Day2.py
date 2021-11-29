@@ -1,4 +1,4 @@
-inputString = open("Day2Input.txt", "r").read().splitlines()
+inputString = open("Python/Day2Input.txt", "r").read().splitlines()
 
 def partOne():
     validCount = 0

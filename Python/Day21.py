@@ -1,6 +1,6 @@
 from functools import reduce
 
-inputString = open("Day21Input.txt", "r").read().splitlines()
+inputString = open("Python/Day21Input.txt", "r").read().splitlines()
 
 def processIngredients():
     allergensSets, allIngredients, uniqueIngredients = {}, [], {}

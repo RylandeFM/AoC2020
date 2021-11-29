@@ -1,7 +1,7 @@
 from itertools import groupby
 from functools import reduce
 
-inputString = [int(i) for i in open("Day10Input.txt", "r").read().splitlines()]
+inputString = [int(i) for i in open("Python/Day10Input.txt", "r").read().splitlines()]
 inputString.sort()
 inputString.insert(0, 0)
 inputString.append(inputString[len(inputString)-1] + 3)

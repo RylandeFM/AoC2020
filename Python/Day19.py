@@ -1,6 +1,6 @@
 import re
 
-inputString = open("Day19Input.txt", "r").read().splitlines()
+inputString = open("Python/Day19Input.txt", "r").read().splitlines()
 
 def createRegex(index, rules):
     if rules[index] in ['a', 'b']:

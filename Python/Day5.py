@@ -1,4 +1,4 @@
-inputString = open("Day5Input.txt", "r").read().splitlines()
+inputString = open("Python/Day5Input.txt", "r").read().splitlines()
 seatList = []
 
 def readSeats():

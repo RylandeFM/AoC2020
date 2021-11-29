@@ -1,4 +1,4 @@
-inputString = open("Day3Input.txt", "r").read().splitlines()
+inputString = open("Python/Day3Input.txt", "r").read().splitlines()
 
 def countTrees(step, slope):
     length, xPos, totalCount = len(inputString[0]), 0, 0
