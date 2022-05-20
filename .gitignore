@@ -8,3 +8,5 @@
 /CSharp/obj
 /Python/.vs
 /CSharp/.vs/CSharp/DesignTimeBuild
+*.suo
+/CSharp/.vs/CSharp/FileContentIndex
